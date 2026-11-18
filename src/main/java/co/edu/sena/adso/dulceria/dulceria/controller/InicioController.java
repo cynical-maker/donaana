@@ -6,23 +6,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import co.edu.sena.adso.dulceria.dulceria.service.DulceService;
-
 @Controller
 public class InicioController {
  
-    private final DulceService dulces;
- 
-    public InicioController(DulceService dulces) {
-        this.dulces = dulces;
-    }
- 
     @GetMapping("/")
     public String inicio(Model model) {
-        int hora = LocalTime.now().getHour();
-        model.addAttribute("saludo", hora < 12 ? "¡Buenos días!" : hora < 18 ? "¡Buenas tardes!" : "¡Buenas noches!");
+        model.addAttribute("nombreTienda", "Dulces Doña Ana");
+        model.addAttribute("eslogan", "Dulces típicos del Portal de los Dulces · Cartagena de Indias");
         model.addAttribute("horario", "Todos los días de 9:00 a. m. a 9:00 p. m.");
-        model.addAttribute("destacados", dulces.destacados());
+        int hora = LocalTime.now().getHour();
+        String saludo = hora < 12 ? "¡Buenos días!" : hora < 18 ? "¡Buenas tardes!" : "¡Buenas noches!";
+        model.addAttribute("saludo", saludo);
+ 
         return "inicio";
     }
 }

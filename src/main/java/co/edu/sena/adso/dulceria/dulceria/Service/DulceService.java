@@ -24,7 +24,9 @@ public class DulceService {
     // Todos los dulces, ordenados por nombre
     public List<Dulce> listar() {
         return repositorio.findAll().stream()
-                .sorted(Comparator.comparing(Dulce::getNombre))
+                .sorted(Comparator.comparing(
+                        dulce -> dulce.getNombre(),
+                        Comparator.nullsFirst(Comparator.naturalOrder())))
                 .toList();
     }
  
@@ -41,7 +43,7 @@ public class DulceService {
     // REGLA DE NEGOCIO: en el inicio se destacan 3 dulces disponibles
     public List<Dulce> destacados() {
         return listar().stream()
-                .filter(Dulce::isDisponible)
+                .filter(dulce -> dulce != null && dulce.isDisponible())
                 .limit(3)
                 .toList();
     }

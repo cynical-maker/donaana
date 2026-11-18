@@ -1,4 +1,3 @@
-/* Colores de la marca: buganvilla, amarillo de balcón y azul colonial */
 :root {
   --buganvilla: #a3195b;
   --amarillo: #f2b705;
@@ -20,4 +19,3 @@ main { flex: 1; }
 .btn-marca { background: var(--buganvilla); color: #fff; }
 .btn-marca:hover { background: #7d1246; color: #fff; }
 .pie { background: var(--azul); color: #dbe6f0; padding: 1rem 0; font-size: 0.9rem; }
-
