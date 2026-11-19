@@ -13,7 +13,7 @@ import co.edu.sena.adso.dulceria.dulceria.model.Categoria;
 import co.edu.sena.adso.dulceria.dulceria.model.Dulce;
  
 @Repository   // Capa de DATOS. Por ahora los datos viven en memoria: se pierden al reiniciar.
-public class DulceRepositoryMemoria implements DulceRepository {
+public class DulceRepositoryMemoria {
  
     private final Map<Long, Dulce> datos = new ConcurrentHashMap<>();
     private final AtomicLong secuencia = new AtomicLong();
@@ -36,17 +36,14 @@ public class DulceRepositoryMemoria implements DulceRepository {
         datos.put(dulce.getId(), dulce);
     }
  
-    @Override
     public List<Dulce> findAll() {
         return new ArrayList<>(datos.values());
     }
  
-    @Override
     public Optional<Dulce> findById(Long id) {
         return Optional.ofNullable(datos.get(id));
     }
  
-    @Override
     public Dulce save(Dulce dulce) {
         if (dulce.getId() == null) {              // Si es nuevo, se le asigna un código
             dulce.setId(secuencia.incrementAndGet());
@@ -55,7 +52,6 @@ public class DulceRepositoryMemoria implements DulceRepository {
         return dulce;
     }
  
-    @Override
     public void deleteById(Long id) {
         datos.remove(id);
     }
