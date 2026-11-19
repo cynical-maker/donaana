@@ -27,7 +27,7 @@ public class CatalogoController {
         model.addAttribute("categorias", Categoria.values());
         model.addAttribute("categoriaActual", categoria);
         return "catalogo";
-    }
+    }   
 
     @GetMapping("/{id}")
     public String detalle(@PathVariable("id") Long id, Model model) {
